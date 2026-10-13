@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0F1522">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>NEET Study & Revision Calendar</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&display=swap">
+<style>
+:root{--bg:#F2F5FA;--card:#fff;--ink:#1B2433;--mute:#69758A;--line:#DDE3EE;--p:#2F5BEA;--c:#D9800B;--b:#0E9F85;--o:#7A5AC8;--on:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1522;--card:#18202F;--ink:#E8EDF7;--mute:#8F9BB1;--line:#27324A;--p:#7C9BFF;--c:#F2A93B;--b:#3DD1B3;--o:#B49BF2;--on:#0F1522}}
+:root[data-theme="dark"]{--bg:#0F1522;--card:#18202F;--ink:#E8EDF7;--mute:#8F9BB1;--line:#27324A;--p:#7C9BFF;--c:#F2A93B;--b:#3DD1B3;--o:#B49BF2;--on:#0F1522}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.4}
+main{max-width:560px;margin:0 auto;padding:14px 12px 120px}
+button,select,input{font:inherit;color:inherit}
+button{cursor:pointer}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+h1{font-size:24px;font-weight:800;margin:0;letter-spacing:-.02em}
+.nav{display:flex;gap:6px}
+.nav button{background:var(--card);border:1px solid var(--line);border-radius:12px;width:44px;height:44px;font-size:20px}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:10px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:7px 4px;text-align:center}
+.stat b{font-size:18px;display:block}
+.stat span{font-size:11px;color:var(--mute)}
+.p{--k:var(--p)}.c{--k:var(--c)}.b{--k:var(--b)}.o{--k:var(--o)}.z{--k:var(--z)}
+:root{--z:#D63F7A}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--z:#FF7FAE}}
+:root[data-theme="dark"]{--z:#FF7FAE}
+.tl{font-size:9px;font-weight:800;border-radius:4px;padding:0 4px;line-height:14px;background:var(--ink);color:var(--bg)}
+.tl.bb{background:var(--b);color:var(--on)}.tl.ai{background:#C0392B;color:#fff}
+.tb{background:var(--bg);border-radius:12px;padding:10px;margin-top:10px}
+.tn{font-weight:800;font-size:15px;margin-bottom:6px}
+.ts{display:flex;gap:8px;margin:8px 0}
+.ts>b{width:76px;flex:none;font-size:13px;color:var(--k);padding-top:6px}
+.tc{display:flex;flex-wrap:wrap;gap:6px}
+.sch{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:36px;background:none;border:none;padding:0;text-align:left}
+.sch h2{margin:0}
+.sch em{font-style:normal;color:var(--mute);font-size:14px}
+.sub{display:flex;align-items:center;gap:10px;width:100%;min-height:46px;background:none;border:none;border-top:1px solid var(--line);padding:6px 0;text-align:left}
+.sub .sn{width:76px;font-weight:600;color:var(--k)}
+.sbar2{flex:1;height:8px;background:var(--bg);border-radius:4px;position:relative;overflow:hidden}
+.sbar2 i,.sbar2 u{position:absolute;left:0;top:0;bottom:0;background:var(--k);text-decoration:none}
+.sbar2 i{opacity:.35}
+.sub b{font-size:13px;min-width:44px;text-align:right}
+.chr{display:flex;align-items:center;gap:10px;width:100%;min-height:48px;background:none;border:none;border-top:1px dashed var(--line);padding:6px 0;text-align:left}
+.chr .cn{flex:1;font-size:14px}
+.chr small{display:block;color:var(--mute);font-size:12px}
+.st{width:12px;height:12px;border-radius:50%;border:2px solid var(--line);flex:none}
+.st.sd{background:var(--k);border-color:var(--k)}
+.st.rv{background:var(--k);border-color:var(--k);box-shadow:0 0 0 2px var(--card),0 0 0 4px var(--k)}
+.tgb{background:none;border:none;width:44px;height:44px;display:grid;place-items:center;flex:none;margin-left:-8px}
+.chr .go{font-size:13px;font-weight:600;color:var(--k);border:1.5px solid var(--k);background:none;border-radius:16px;height:36px;padding:0 12px;white-space:nowrap}
+.srow{display:flex;align-items:center;gap:10px;width:100%;background:none;border:none;padding:9px 0;border-top:1px solid var(--line);text-align:left}
+.srow .tl{min-width:48px;text-align:center}
+.sbar{flex:1;height:8px;background:var(--bg);border-radius:4px;overflow:hidden}
+.sbar i{display:block;height:100%;background:var(--ink)}
+.srow b{font-size:14px;min-width:68px;text-align:right}
+.scr{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+.chipS{font-size:13px;font-weight:600;color:var(--k);border:1.5px solid var(--k);border-radius:14px;padding:2px 10px}
+.btn{border:none;border-radius:12px;height:44px;padding:0 14px;font-weight:600;background:var(--ink);color:var(--bg);font-size:14px}
+.btn.alt{background:var(--bg);color:var(--ink);border:1px solid var(--line)}
+#bkTxt{width:100%;height:96px;margin:10px 0;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font-size:13px;padding:10px;resize:vertical}
+.tchip{border:1.5px solid var(--k);background:transparent;color:var(--ink);border-radius:16px;min-height:36px;padding:2px 10px;font-size:13px;text-align:left}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:12px}
+.card h2{margin:0 0 8px;font-size:17px}
+.due-item{display:flex;align-items:center;gap:8px;padding:8px 0;border-top:1px solid var(--line)}
+.due-item:first-of-type{border-top:none}
+.due-item .tx{flex:1;min-width:0;font-size:15px}
+.due-item small{display:block;color:var(--mute);font-size:12px}
+.bar{width:5px;align-self:stretch;border-radius:3px;background:var(--k)}
+.rev{background:var(--k);color:var(--on);border:none;border-radius:10px;padding:0 14px;height:40px;font-weight:600}
+.x{background:none;border:none;color:var(--mute);font-size:22px;width:40px;height:40px}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.dow{font-size:12px;color:var(--mute);text-align:center;padding:2px 0}
+.day{min-height:68px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:4px 2px 5px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:2px}
+.day.blank{background:none;border:none}
+.day .n{font-size:14px;font-weight:600}
+.day.today .n{background:var(--ink);color:var(--bg);border-radius:50%;width:24px;height:24px;display:grid;place-items:center}
+.day.sel{outline:2px solid var(--ink);outline-offset:1px}
+.day.due{box-shadow:inset 0 -4px 0 var(--mute)}
+.dots{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;min-height:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--k);display:block}
+.dot.q{border-radius:2px}
+.qrow{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:13px}
+.qrow>span:first-child{width:72px;color:var(--k);font-weight:600}
+.qbar{flex:1;height:8px;background:var(--bg);border-radius:4px;overflow:hidden}
+.qbar i{display:block;height:100%;background:var(--k)}
+.qrow b{text-align:right;font-size:12px}
+.qt{width:52px;height:30px;font-size:14px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);text-align:center}
+.dot.r{background:transparent;border:2px solid var(--k)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--mute);margin:10px 2px 12px;align-items:center}
+.legend span{display:flex;align-items:center;gap:5px}
+.legend .dot{display:inline-block}
+.legend .ln{width:14px;height:4px;background:var(--mute);border-radius:2px}
+.dh{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.dh em{font-style:normal;color:var(--mute);font-size:14px}
+.sec{margin-top:12px}
+.sec h3{margin:0 0 6px;font-size:14px;color:var(--mute);font-weight:600}
+.item{display:flex;align-items:center;gap:8px;padding:8px 8px 8px 0;border-radius:8px;margin-bottom:4px;font-size:15px}
+.item .tx{flex:1;min-width:0;word-break:break-word}
+.item small{color:var(--mute);font-size:12px;display:block}
+.tag{font-size:12px;font-weight:600;color:var(--k);white-space:nowrap}
+.empty{font-size:14px;color:var(--mute);margin:8px 0 0}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));height:56px;padding:0 22px;border-radius:28px;border:none;background:var(--ink);color:var(--bg);font-weight:800;font-size:16px;box-shadow:0 6px 20px rgba(0,0,0,.28);z-index:5}
+.bd{position:fixed;inset:0;background:rgba(10,15,25,.55);z-index:10}
+.sheet{position:fixed;left:0;right:0;bottom:0;max-height:92%;overflow-y:auto;overscroll-behavior:contain;background:var(--card);border-radius:20px 20px 0 0;padding:14px 16px calc(18px + env(safe-area-inset-bottom,0px));z-index:11;max-width:560px;margin:0 auto}
+.sheet h2{margin:0 0 10px;font-size:18px}
+.seg{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--bg);border-radius:12px;padding:3px;margin-bottom:12px}
+.seg button{border:none;background:none;height:42px;border-radius:10px;font-weight:600}
+.seg button.on{background:var(--ink);color:var(--bg)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.chip{border:1.5px solid var(--line);background:var(--bg);border-radius:20px;height:40px;padding:0 14px;font-weight:600}
+.chip.on{background:var(--k,var(--ink));border-color:var(--k,var(--ink));color:var(--on)}
+.sheet label.l{display:block;font-size:13px;color:var(--mute);margin:2px 0 6px}
+.sheet select,.sheet input[type=text],.sheet input[type=number]{width:100%;height:48px;font-size:16px;padding:0 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);margin-bottom:12px}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:14px;margin:4px 0 14px}
+.chk input{width:22px;height:22px;margin:0;flex:none}
+.save{width:100%;height:52px;border:none;border-radius:14px;background:var(--ink);color:var(--bg);font-weight:800;font-size:16px}
+.err{color:#D93B3B;font-size:14px;margin:0 0 8px}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+</style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <h1 id="title"></h1>
+    <div class="nav"><button id="prev" aria-label="Previous month">‹</button><button id="next" aria-label="Next month">›</button></div>
+  </div>
+  <div class="stats">
+    <div class="stat"><b id="stS">0</b><span>Studied</span></div>
+    <div class="stat"><b id="stR">0</b><span>Revised</span></div>
+    <div class="stat"><b id="stQ">0</b><span>Qs</span></div>
+    <div class="stat"><b id="stT">0m</b><span>Time</span></div>
+    <div class="stat"><b id="stK">0</b><span>Streak</span></div>
+  </div>
+  <div class="card" id="nextCard" hidden></div>
+  <div class="card" id="dueCard" hidden></div>
+  <div class="grid" id="dows"></div>
+  <div class="grid" id="grid" style="margin-top:4px"></div>
+  <div class="legend">
+    <span class="p"><i class="dot"></i>Physics</span><span class="c"><i class="dot"></i>Chemistry</span><span class="b"><i class="dot"></i>Botany</span><span class="z"><i class="dot"></i>Zoology</span>
+    <span><i class="dot" style="background:var(--mute)"></i>Studied</span><span><i class="dot" style="background:transparent;border:2px solid var(--mute)"></i>Revised</span><span><i class="ln"></i>Revision due</span><span><i class="dot q" style="background:var(--mute)"></i>Practice</span><span>PM Pro Max · BB Bio Booster · AITS</span>
+  </div>
+  <div class="card" id="panel"></div>
+  <div class="card" id="sylCard"></div>
+  <div class="card" id="scCard" hidden></div>
+  <div class="card" id="bkCard">
+    <button class="sch" id="bkTog" aria-expanded="false"><h2>Backup &amp; restore</h2><em id="bkArrow">▾</em></button>
+    <div id="bkBody" hidden>
+      <p class="empty" style="margin:10px 0">Your data is stored on this device only. Copy a backup before switching phones, browsers or apps.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="bkCopy">Copy backup</button><button class="btn alt" id="bkDl">Download file</button><label class="btn alt" style="display:grid;place-items:center">Open file<input type="file" id="bkFile" accept=".json,application/json" hidden></label></div>
+      <textarea id="bkTxt" placeholder="Backup text appears here. Paste a backup here to restore it." spellcheck="false"></textarea>
+      <button class="btn alt" id="bkRestore" style="width:100%">Restore from text</button>
+      <p class="empty" id="bkMsg"></p>
+    </div>
+  </div>
+</main>
+<button class="fab" id="fab">+ Log</button>
+<div class="bd" id="bd" hidden></div>
+<div class="sheet" id="sheet" hidden>
+  <h2 id="shTitle"></h2>
+  <div class="seg"><button data-t="s">Studied</button><button data-t="r">Revised</button><button data-t="q">Practice</button></div>
+  <div class="chips" id="subChips"></div>
+  <div id="chBox"><label class="l" for="chSel">Chapter</label><select id="chSel"></select></div>
+  <div id="chCBox" hidden><label class="l" for="chCustom">Chapter name</label><input type="text" id="chCustom" maxlength="80" placeholder="Type chapter"></div>
+  <div id="qBox" hidden><div style="display:flex;gap:10px"><div style="flex:1"><label class="l" for="qAtt">Questions attempted</label><input type="number" id="qAtt" inputmode="numeric" min="0" placeholder="e.g. 45"></div><div style="flex:1"><label class="l" for="qCor">Correct</label><input type="number" id="qCor" inputmode="numeric" min="0" placeholder="e.g. 32"></div></div></div>
+  <label class="l" for="topic">Topic or note (optional)</label>
+  <input type="text" id="topic" maxlength="100" placeholder="e.g. Numericals, NCERT lines">
+  <label class="l">Time spent</label>
+  <div class="chips" id="minChips"></div>
+  <input type="number" id="min" inputmode="numeric" min="0" max="900" placeholder="Minutes">
+  <label class="chk" id="remRow"><input type="checkbox" id="remChk" checked><span>Remind me to revise this after 1, 3, 7 and 21 days</span></label>
+  <p class="err" id="err" hidden></p>
+  <button class="save" id="save">Save</button>
+</div>
+<div class="sheet" id="scSheet" hidden>
+  <h2 id="scTitle"></h2>
+  <div id="scFields"></div>
+  <p class="empty" style="margin:0 0 12px">Total: <b id="scTot"></b></p>
+  <label class="l" for="scNote">Note (optional)</label>
+  <input type="text" id="scNote" maxlength="100" placeholder="e.g. Silly mistakes in Physics">
+  <p class="err" id="scErr" hidden></p>
+  <button class="save" id="scSave">Save score</button>
+  <button class="x" id="scDel" hidden style="width:100%;height:46px;font-size:15px;color:#D93B3B;margin-top:6px">Delete score</button>
+</div>
+<script>
+const SUBS=['Physics','Chemistry','Botany','Zoology','Other'];
+const SUBS_ALL=['Physics','Chemistry','Botany','Zoology','Biology','Other'];
+const CH={
+Physics:['Units and Measurements','Mathematical Tools','Motion in a Straight Line','Motion in a Plane','Laws of Motion','Work, Energy and Power','Centre of Mass & System of Particles','Rotational Motion','Gravitation','Mechanical Properties of Solids','Mechanical Properties of Fluids','Thermal Properties of Matter','Kinetic Theory','Thermodynamics','Oscillations','Waves','Electric Charges and Fields','Electrostatic Potential and Capacitance','Current Electricity','Moving Charges and Magnetism','Magnetism and Matter','Electromagnetic Induction','Alternating Current','Electromagnetic Waves','Ray Optics and Optical Instruments','Wave Optics','Dual Nature of Radiation and Matter','Atoms','Nuclei','Semiconductor Electronics'],
+Chemistry:['Some Basic Concepts of Chemistry','Structure of Atom','Redox Reactions','Classification of Elements and Periodicity','Chemical Bonding and Molecular Structure','Thermodynamics and Thermochemistry','Equilibrium','Solutions','Chemical Kinetics','Electrochemistry','IUPAC Nomenclature (Organic)','Isomerism (Organic)','General Organic Chemistry','Hydrocarbons','Haloalkanes and Haloarenes','Alcohols, Phenols and Ethers','Aldehydes, Ketones and Carboxylic Acids','Amines','Biomolecules (Chemistry)','Purification and Analysis of Organic Compounds','Coordination Compounds','p-Block Elements','d- and f-Block Elements','Salt Analysis'],
+Botany:['The Living World','Biological Classification','Plant Kingdom','Morphology of Flowering Plants','Anatomy of Flowering Plants','Cell: The Unit of Life','Cell Cycle and Cell Division','Photosynthesis in Higher Plants','Respiration in Plants','Plant Growth and Development','Sexual Reproduction in Flowering Plants','Principles of Inheritance and Variation','Molecular Basis of Inheritance','Microbes in Human Welfare','Organisms and Populations','Ecosystem','Biodiversity and Conservation'],
+Zoology:['Animal Kingdom','Structural Organisation in Animals','Frog and Cockroach','Biomolecules','Breathing and Exchange of Gases','Body Fluids and Circulation','Excretory Products and Elimination','Locomotion and Movement','Neural Control and Coordination','Chemical Coordination and Integration','Human Reproduction','Reproductive Health','Human Health and Disease','Evolution','Biotechnology: Principles and Processes','Biotechnology and Its Applications']
+};
+/* Test schedule: Dropper NEET Achievers planner */
+const TESTS=[];
+const sy=s=>s?s.split('; '):[];
+const NM={pm:'Pro Max',bb:'Bio Booster',ai:'AITS'},CD={pm:'PM',bb:'BB',ai:'AITS'},MD={pm:'OMR',bb:'App-based practice',ai:''};
+function T(d,k,n,p,c,b,z,note){const full=p==='FULL';TESTS.push({d,k,n,mode:MD[k],full,note:note||'',s:full?{}:{Physics:sy(p),Chemistry:sy(c),Botany:sy(b),Zoology:sy(z)}})}
+const P30='Also includes 30% from previous Bio Boosters.';
+T('2026-09-20','pm',1,'Units and Measurements; Mathematical Tools','Structure of Atom','Cell: The Unit of Life','Structural Organisation in Animals','Zoology: tissues only.');
+T('2026-09-24','bb',1,'','','Cell: The Unit of Life','Structural Organisation in Animals','Zoology: tissues only.');
+T('2026-10-04','ai',1,'Units and Measurements; Mathematical Tools; Motion in a Straight Line; Motion in a Plane','Some Basic Concepts of Chemistry; Redox Reactions','Cell: The Unit of Life','Structural Organisation in Animals','Optional test. Zoology includes frog and cockroach.');
+T('2026-10-11','pm',2,'Motion in a Straight Line; Motion in a Plane','Some Basic Concepts of Chemistry; Redox Reactions','Cell Cycle and Cell Division','Frog and Cockroach; Biomolecules');
+T('2026-10-15','bb',2,'','','Cell Cycle and Cell Division','Frog and Cockroach; Biomolecules',P30);
+T('2026-10-25','pm',3,'Laws of Motion; Work, Energy and Power','Classification of Elements and Periodicity; Chemical Bonding and Molecular Structure','Principles of Inheritance and Variation','Breathing and Exchange of Gases');
+T('2026-10-29','bb',3,'','','Principles of Inheritance and Variation','Breathing and Exchange of Gases',P30);
+T('2026-11-01','ai',2,'Laws of Motion; Work, Energy and Power; Centre of Mass & System of Particles','Structure of Atom; Thermodynamics and Thermochemistry','Cell Cycle and Cell Division','Breathing and Exchange of Gases; Body Fluids and Circulation','Optional test.');
+T('2026-11-22','pm',4,'Centre of Mass & System of Particles; Rotational Motion; Gravitation','Thermodynamics and Thermochemistry; Chemical Kinetics','Molecular Basis of Inheritance','Body Fluids and Circulation');
+T('2026-11-26','bb',4,'','','Molecular Basis of Inheritance','Body Fluids and Circulation',P30);
+T('2026-12-06','pm',5,'Mechanical Properties of Solids; Mechanical Properties of Fluids','Equilibrium; Solutions','The Living World; Biological Classification','Excretory Products and Elimination; Locomotion and Movement');
+T('2026-12-10','bb',5,'','','The Living World; Biological Classification','Excretory Products and Elimination; Locomotion and Movement',P30);
+T('2026-12-13','ai',3,'Rotational Motion; Gravitation; Mechanical Properties of Solids','Equilibrium','The Living World; Biological Classification','Excretory Products and Elimination; Locomotion and Movement');
+T('2026-12-27','pm',6,'Thermal Properties of Matter; Kinetic Theory; Thermodynamics','Electrochemistry','Microbes in Human Welfare; Plant Kingdom','Neural Control and Coordination');
+T('2026-12-31','bb',6,'','','Microbes in Human Welfare; Plant Kingdom','Neural Control and Coordination',P30);
+T('2027-01-10','pm',7,'Oscillations; Waves','IUPAC Nomenclature (Organic); Isomerism (Organic)','Morphology of Flowering Plants','Chemical Coordination and Integration');
+T('2027-01-14','bb',7,'','','Morphology of Flowering Plants','Chemical Coordination and Integration',P30);
+T('2027-01-17','ai',4,'Mechanical Properties of Fluids; Thermal Properties of Matter; Kinetic Theory','Solutions; Electrochemistry','Plant Kingdom; Morphology of Flowering Plants','Neural Control and Coordination; Chemical Coordination and Integration');
+T('2027-01-31','pm',8,'Electric Charges and Fields; Electrostatic Potential and Capacitance','General Organic Chemistry','Anatomy of Flowering Plants','Animal Kingdom');
+T('2027-02-04','bb',8,'','','Anatomy of Flowering Plants','Animal Kingdom',P30);
+T('2027-02-14','pm',9,'Current Electricity','Hydrocarbons; Haloalkanes and Haloarenes','Sexual Reproduction in Flowering Plants','Human Reproduction');
+T('2027-02-18','bb',9,'','','Sexual Reproduction in Flowering Plants','Human Reproduction',P30);
+T('2027-02-21','ai',5,'Thermodynamics; Oscillations; Waves; Electric Charges and Fields','IUPAC Nomenclature (Organic); Isomerism (Organic); Chemical Kinetics','Anatomy of Flowering Plants; Sexual Reproduction in Flowering Plants','Animal Kingdom; Human Reproduction');
+T('2027-02-28','pm',10,'Moving Charges and Magnetism; Magnetism and Matter; Electromagnetic Induction','Alcohols, Phenols and Ethers; Aldehydes, Ketones and Carboxylic Acids','Respiration in Plants','Reproductive Health');
+T('2027-03-04','bb',10,'','','Respiration in Plants','Reproductive Health',P30);
+T('2027-03-14','ai',6,'Electrostatic Potential and Capacitance; Current Electricity','General Organic Chemistry; Hydrocarbons; Haloalkanes and Haloarenes','Molecular Basis of Inheritance','Reproductive Health; Biomolecules');
+T('2027-03-21','ai',7,'Moving Charges and Magnetism; Magnetism and Matter; Electromagnetic Induction','Alcohols, Phenols and Ethers; Aldehydes, Ketones and Carboxylic Acids; Amines; Biomolecules (Chemistry)','Principles of Inheritance and Variation','Human Health and Disease');
+T('2027-03-28','ai',8,'Alternating Current; Electromagnetic Waves; Ray Optics and Optical Instruments; Wave Optics','Purification and Analysis of Organic Compounds; Classification of Elements and Periodicity; Chemical Bonding and Molecular Structure','Respiration in Plants; Photosynthesis in Higher Plants; Plant Growth and Development','Evolution');
+T('2027-04-04','ai',9,'Dual Nature of Radiation and Matter; Atoms; Nuclei; Semiconductor Electronics','Coordination Compounds; p-Block Elements; d- and f-Block Elements; Salt Analysis','Organisms and Populations; Ecosystem; Biodiversity and Conservation','Biotechnology: Principles and Processes; Biotechnology and Its Applications');
+[['2027-04-11',10],['2027-04-18',11],['2027-04-21',12],['2027-04-25',13],['2027-04-28',14]].forEach(([d,n])=>T(d,'ai',n,'FULL'));
+const tname=t=>NM[t.k]+' '+t.n;
+const tl=k=>{const t=TESTS.find(x=>x.d===k);return t?`<span class="tl ${t.k}">${CD[t.k]}${t.n}</span>`:'<span></span>'};
+function testBlock(k){
+  const t=TESTS.find(x=>x.d===k);if(!t)return'';
+  const rows=Object.entries(t.s).filter(([,l])=>l.length).map(([s,l])=>`<div class="ts ${cls(s)}"><b>${s}</b><div class="tc">${l.map(c=>`<button class="tchip" data-csub="${s}" data-ch="${esc(c)}">${esc(c)}</button>`).join('')}</div></div>`).join('');
+  return `<div class="tb"><div class="tn">${tname(t)}${t.mode?' · '+t.mode:''}</div>${t.full?'<p class="empty" style="margin:0">Full syllabus for all four subjects, as per NTA.</p>':rows+'<p class="empty">Tap a chapter to log it as studied.</p>'}${t.note?`<p class="empty">${esc(t.note)}</p>`:''}${scoreHtml(t)}</div>`;
+}
+const subsOf=t=>t.k==='bb'?['Botany','Zoology']:['Physics','Chemistry','Botany','Zoology'];
+function scTotal(t,sc){const l=subsOf(t);return {tot:l.reduce((a,s)=>a+(+sc[s]||0),0),max:l.length*180}}
+function scoreHtml(t){
+  const sc=data.scores[t.d];
+  if(!sc)return t.d<=todayKey?`<button class="rev" style="background:var(--ink);color:var(--bg);margin-top:10px;width:100%;height:46px" data-score="${t.d}">Add my score</button>`:'';
+  const {tot,max}=scTotal(t,sc);
+  return `<div class="scr"><div class="dh"><b>Score: ${tot}/${max} (${Math.round(tot/max*100)}%)</b><button class="x" style="width:auto;font-size:14px;color:var(--ink);text-decoration:underline" data-score="${t.d}">Edit</button></div><div class="tc">${subsOf(t).map(s=>`<span class="chipS ${cls(s)}">${s} ${sc[s]??'-'}</span>`).join('')}</div>${sc.note?`<p class="empty">${esc(sc.note)}</p>`:''}</div>`;
+}
+function renderScores(){
+  const c=$('scCard'),rows=TESTS.filter(t=>data.scores[t.d]).sort((a,b)=>a.d<b.d?1:-1);
+  c.hidden=!rows.length;if(!rows.length)return;
+  const pc=t=>{const {tot,max}=scTotal(t,data.scores[t.d]);return Math.round(tot/max*100)};
+  const last=rows.slice(0,3),avg=Math.round(last.reduce((a,t)=>a+pc(t),0)/last.length);
+  c.innerHTML=`<button class="sch" data-tog="1" aria-expanded="${!!data.scOpen}"><h2>Test scores</h2><em>Avg ${avg}% ${data.scOpen?'▴':'▾'}</em></button>`+(!data.scOpen?'':rows.map(t=>{const {tot,max}=scTotal(t,data.scores[t.d]);return `<button class="srow" data-goto="${t.d}"><span class="tl ${t.k}">${CD[t.k]}${t.n}</span><span class="sbar"><i style="width:${Math.max(0,pc(t))}%"></i></span><b>${tot}/${max}</b></button>`}).join(''));
+}
+let SC=null;
+function openScore(d){
+  SC=TESTS.find(x=>x.d===d);const ex=data.scores[d]||{};
+  $('scTitle').textContent='Score · '+tname(SC);
+  $('scFields').innerHTML=subsOf(SC).map(s=>`<label class="l">${s} (out of 180)</label><input type="number" data-sc="${s}" value="${ex[s]??''}" placeholder="Marks">`).join('');
+  $('scNote').value=ex.note||'';$('scErr').hidden=true;$('scDel').hidden=!data.scores[d];updTot();
+  $('bd').hidden=false;$('scSheet').hidden=false;
+}
+function updTot(){let t=0;document.querySelectorAll('[data-sc]').forEach(i=>{if(i.value!=='')t+=+i.value});$('scTot').textContent=t+' / '+subsOf(SC).length*180}
+function renderNext(){
+  const t=TESTS.find(x=>x.d>=todayKey),c=$('nextCard');
+  if(!t){c.hidden=true;return}
+  const n=diff(t.d,todayKey);c.hidden=false;
+  c.innerHTML=`<div class="dh"><h2>Next: ${tname(t)}</h2><em>${n===0?'today':n===1?'tomorrow':'in '+n+' days'}</em></div><p class="empty" style="margin:0 0 10px">${parse(t.d).toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short'})}${t.mode?' · '+t.mode:''}</p><button class="rev" style="background:var(--ink);color:var(--bg)" data-goto="${t.d}">See syllabus</button>`;
+}
+const KEY='neet-study-tracker-v2';
+let data={entries:{},rem:[],scores:{}};
+try{const d=JSON.parse(localStorage.getItem(KEY)||'null');if(d&&d.entries)data=d;
+ else{const o=JSON.parse(localStorage.getItem('study-revise-tracker-v1')||'null');
+  if(o)for(const k in o){data.entries[k]=[...(o[k].s||[]).map(t=>({id:rid(),type:'s',sub:'Other',ch:t,topic:'',min:0})),...(o[k].r||[]).map(t=>({id:rid(),type:'r',sub:'Other',ch:t,topic:'',min:0}))]}}}catch(e){}
+data.scores=data.scores||{};data.syl=data.syl||{};
+if(data.marked){Object.entries(data.marked).forEach(([k,d])=>{if(!data.syl[k])data.syl[k]={d,r:0,l:d}});delete data.marked}
+function rid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){}}
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(2,'0');
+const keyOf=dt=>`${dt.getFullYear()}-${pad(dt.getMonth()+1)}-${pad(dt.getDate())}`;
+const parse=k=>{const [y,m,d]=k.split('-').map(Number);return new Date(y,m-1,d)};
+const addDays=(k,n)=>{const d=parse(k);d.setDate(d.getDate()+n);return keyOf(d)};
+const diff=(a,b)=>Math.round((Date.UTC(...a.split('-').map((v,i)=>i==1?v-1:+v))-Date.UTC(...b.split('-').map((v,i)=>i==1?v-1:+v)))/864e5);
+const now=new Date(),todayKey=keyOf(now);
+let view={y:now.getFullYear(),m:now.getMonth()},sel=todayKey;
+const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const cls=s=>({Physics:'p',Chemistry:'c',Botany:'b',Biology:'b',Zoology:'z'}[s]||'o');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=m=>m>=60?Math.floor(m/60)+'h'+(m%60?' '+m%60+'m':''):m+'m';
+const ents=k=>data.entries[k]||[];
+$('dows').innerHTML=['Su','Mo','Tu','We','Th','Fr','Sa'].map(d=>`<div class="dow">${d}</div>`).join('');
+
+function streak(){let d=todayKey,c=0;if(!ents(d).length)d=addDays(d,-1);while(ents(d).length){c++;d=addDays(d,-1)}return c}
+function render(){
+  const {y,m}=view;
+  $('title').textContent=`${MONTHS[m]} ${y}`;
+  const first=new Date(y,m,1).getDay(),days=new Date(y,m+1,0).getDate();
+  let h='',ns=0,nr=0,tm=0,nq=0;
+  for(let i=0;i<first;i++)h+='<div class="day blank"></div>';
+  for(let d=1;d<=days;d++){
+    const k=`${y}-${pad(m+1)}-${pad(d)}`,es=ents(k);
+    es.forEach(e=>{if(e.type==='q')nq+=e.att||0;else e.type==='s'?ns++:nr++;tm+=e.min||0});
+    const dots=SUBS_ALL.flatMap(s=>['s','r','q'].filter(t=>es.some(e=>e.sub===s&&e.type===t)).map(t=>`<i class="dot ${cls(s)} ${t}"></i>`)).join('');
+    const due=data.rem.some(r=>!r.done&&r.due===k);
+    h+=`<button class="day${k===todayKey?' today':''}${k===sel?' sel':''}${due?' due':''}" data-k="${k}" aria-label="${d} ${MONTHS[m]}"><span class="n">${d}</span>${tl(k)}<span class="dots">${dots}</span></button>`;
+  }
+  $('grid').innerHTML=h;
+  $('stS').textContent=ns;$('stQ').textContent=nq;$('stR').textContent=nr;$('stT').textContent=fmt(tm);$('stK').textContent=streak();
+  renderNext();renderSyl();renderScores();renderDue();renderPanel();
+}
+function nudges(){
+  const out=[],seen={};
+  const pend=new Set(data.rem.filter(r=>!r.done&&r.due<=todayKey).map(r=>r.sub+'|'+r.ch));
+  const add=(kind,sub,ch,why,rank)=>{const k=sub+'|'+ch;if(seen[k]||pend.has(k))return;seen[k]=1;out.push({kind,sub,ch,why,rank})};
+  const t=TESTS.find(x=>x.d>=todayKey);
+  if(t){const n=diff(t.d,todayKey),tw=tname(t)+' in '+n+' day'+(n===1?'':'s');if(n<=7)Object.entries(t.s).forEach(([sub,l])=>l.forEach(ch=>{const o=data.syl[sub+'|'+ch];if(!o)add('c',sub,ch,'Not completed · '+tw,0);else if(diff(todayKey,o.l)>=5)add('r',sub,ch,'Revise · '+tw,0)}))}
+  const gaps=[7,14,30,45];
+  Object.keys(data.syl).forEach(k=>{const o=data.syl[k],ago=diff(todayKey,o.l);if(ago>=gaps[Math.min(o.r,3)]){const [sub,ch]=k.split('|');add('r',sub,ch,(o.r?'Last revised ':'Completed ')+ago+' days ago',1-ago/1000)}});
+  return out.sort((a,b)=>a.rank-b.rank).slice(0,6);
+}
+function renderDue(){
+  const list=data.rem.filter(r=>!r.done&&r.due<=todayKey).sort((a,b)=>a.due<b.due?-1:1);
+  const nd=nudges(),c=$('dueCard');
+  c.hidden=!list.length&&!nd.length;if(c.hidden)return;
+  const open=data.dueOpen!==false;
+  c.innerHTML=`<button class="sch" data-duetog="1" aria-expanded="${open}"><h2>Revise now (${list.length+nd.length})</h2><em>${open?'▴':'▾'}</em></button>`+(!open?'':list.map(r=>{
+    const od=diff(todayKey,r.due);
+    return `<div class="due-item ${cls(r.sub)}"><i class="bar"></i><div class="tx">${esc(r.ch)}<small>${r.sub} · revision ${r.n} of 4 · ${od===0?'due today':od+' day'+(od>1?'s':'')+' overdue'}</small></div><button class="rev" data-rev="${r.id}">Revise</button><button class="x" data-skip="${r.id}" aria-label="Dismiss">×</button></div>`}).join('')
+  +nd.map(n=>`<div class="due-item ${cls(n.sub)}"><i class="bar"></i><div class="tx">${esc(n.ch)}<small>${n.sub} · ${esc(n.why)}</small></div><button class="rev" data-nrev="${n.kind}|${n.sub}|${esc(n.ch)}">${n.kind==='c'?'Completed':'Revised'}</button></div>`).join(''));
+}
+let sylMsg='';
+function markPast(){
+  let n=0;
+  TESTS.filter(t=>t.d<todayKey&&!t.full).forEach(t=>Object.entries(t.s).forEach(([sub,l])=>l.forEach(ch=>{
+    const k=sub+'|'+ch;if(!data.syl[k]){data.syl[k]={d:t.d,r:0,l:t.d};n++}
+  })));
+  return n;
+}
+function renderSyl(){
+  const c=$('sylCard'),subs=['Physics','Chemistry','Botany','Zoology'];
+  let tot=0,done=0,rev=0;
+  const per=subs.map(s=>{let d=0,r=0;CH[s].forEach(ch=>{const o=data.syl[s+'|'+ch];if(o)d++;if(o&&o.r)r++});tot+=CH[s].length;done+=d;rev+=r;return{s,n:CH[s].length,d,r}});
+  let h=`<button class="sch" data-syltog="1" aria-expanded="${!!data.sylOpen}"><h2>Syllabus</h2><em>${done}/${tot} completed · ${rev} revised ${data.sylOpen?'▴':'▾'}</em></button>`;
+  if(data.sylOpen){
+    h+=per.map(p=>{
+      const open=data.sylSub===p.s;
+      let x=`<button class="sub ${cls(p.s)}" data-sylsubtog="${p.s}" aria-expanded="${open}"><span class="sn">${p.s}</span><span class="sbar2"><i style="width:${p.d/p.n*100}%"></i><u style="width:${p.r/p.n*100}%"></u></span><b>${p.d}/${p.n}</b></button>`;
+      if(open)x+=CH[p.s].map(ch=>{
+        const o=data.syl[p.s+'|'+ch],ago=o?diff(todayKey,o.l):0,key=p.s+'|'+esc(ch);
+        return `<div class="chr ${cls(p.s)}"><button class="tgb" data-tg="${key}" aria-pressed="${!!o}" aria-label="Completed: ${esc(ch)}"><i class="st ${o?(o.r?'rv':'sd'):''}"></i></button><span class="cn">${esc(ch)}<small>${o?'Completed'+(o.r?' · Revised '+o.r+'×':'')+' · '+(ago===0?'today':ago+'d ago'):'Not completed'}</small></span>${o?`<button class="go" data-rv="${key}">+ Revised</button>`:''}</div>`}).join('');
+      return x}).join('');
+  }
+  c.innerHTML=h;
+}
+const qTg=s=>(data.qTargets&&data.qTargets[s])||(s==='Botany'||s==='Zoology'?50:data.qTarget||30);
+function qSummary(es){
+  const rows=['Physics','Chemistry','Botany','Zoology'].map(s=>{const l=es.filter(e=>e.type==='q'&&e.sub===s),a=l.reduce((x,e)=>x+e.att,0),c=l.reduce((x,e)=>x+e.cor,0),tg=qTg(s);return `<div class="qrow ${cls(s)}"><span>${s}</span><span class="qbar"><i style="width:${Math.min(100,a/tg*100)}%"></i></span><span style="white-space:nowrap">${a} / <input type="number" class="qt" data-qs="${s}" value="${tg}" min="1" max="500" inputmode="numeric" aria-label="${s} daily target"></span><b style="min-width:36px">${a?Math.round(c/a*100)+'%':''}</b></div>`}).join('');
+  return `<div class="sec"><div class="dh"><h3>Question practice</h3><em style="font-size:12px">Tap a target to change it</em></div>${rows}</div>`;
+}
+function renderPanel(){
+  const es=ents(sel),total=es.reduce((a,e)=>a+(e.min||0),0);
+  const label=parse(sel).toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'});
+  const block=(t,name)=>{const l=es.filter(e=>e.type===t);return l.length?`<div class="sec"><h3>${name}</h3>${l.map(e=>`<div class="item ${cls(e.sub)}"><i class="bar" style="align-self:stretch;width:5px;border-radius:3px;background:var(--k)"></i><div class="tx">${esc(e.ch)}<small>${e.sub}${e.topic?' · '+esc(e.topic):''}</small></div><span class="tag">${e.type==='q'?e.cor+'/'+e.att:(e.min?fmt(e.min):'')}</span><button class="x" data-del="${e.id}" aria-label="Remove">×</button></div>`).join('')}</div>`:''};
+  const plan=sel>todayKey?data.rem.filter(r=>!r.done&&r.due===sel):[];
+  let h=`<div class="dh"><h2>${label}</h2><em>${total?fmt(total)+' total':''}</em></div>`+testBlock(sel)+block('s','Studied')+block('r','Revised')+(sel<=todayKey?qSummary(es):'')+block('q','Practice log');
+  if(plan.length)h+=`<div class="sec"><h3>Planned revision</h3>${plan.map(r=>`<div class="item ${cls(r.sub)}"><i class="bar" style="align-self:stretch;width:5px;border-radius:3px;background:var(--k)"></i><div class="tx">${esc(r.ch)}<small>${r.sub} · revision ${r.n} of 4</small></div></div>`).join('')}</div>`;
+  if(!es.length&&!plan.length)h+='<p class="empty">Nothing logged for this day. Tap + Log to add what you studied or revised.</p>';
+  $('panel').innerHTML=h;
+}
+$('grid').addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(b){sel=b.dataset.k;render()}});
+$('dueCard').addEventListener('click',e=>{
+  const rv=e.target.closest('[data-rev]'),sk=e.target.closest('[data-skip]');
+  if(rv){const r=data.rem.find(x=>x.id===rv.dataset.rev);sel=todayKey;view={y:now.getFullYear(),m:now.getMonth()};render();openSheet({type:'r',sub:r.sub,ch:r.ch,link:r.id})}
+  if(sk){const r=data.rem.find(x=>x.id===sk.dataset.skip);if(r){r.done=true;save();render()}}
+});
+$('panel').addEventListener('change',e=>{if(e.target.dataset.qs){const k=e.target.dataset.qs;(data.qTargets=data.qTargets||{})[k]=Math.max(1,Math.min(500,+e.target.value||qTg(k)));save();renderPanel()}});
+$('panel').addEventListener('click',e=>{
+  const cb=e.target.closest('[data-csub]');if(cb){openSheet({type:'s',sub:cb.dataset.csub,ch:cb.dataset.ch});return}
+  const sb=e.target.closest('[data-score]');if(sb){openScore(sb.dataset.score);return}
+  const x=e.target.closest('[data-del]');if(!x)return;
+  data.entries[sel]=ents(sel).filter(en=>en.id!==x.dataset.del);
+  if(!data.entries[sel].length)delete data.entries[sel];
+  save();render();
+});
+[$('nextCard'),$('scCard')].forEach(el=>el.addEventListener('click',e=>{if(e.target.closest('[data-tog]')){data.scOpen=!data.scOpen;save();renderScores();return}const g=e.target.closest('[data-goto]');if(!g)return;sel=g.dataset.goto;const d=parse(sel);view={y:d.getFullYear(),m:d.getMonth()};render();$('panel').scrollIntoView({behavior:'smooth'})}));
+$('prev').onclick=()=>{view.m--;if(view.m<0){view.m=11;view.y--}render()};
+$('next').onclick=()=>{view.m++;if(view.m>11){view.m=0;view.y++}render()};
+
+/* log sheet */
+let F={};
+function openSheet(o={}){
+  F=Object.assign({type:'s',sub:'Physics',ch:'',link:null},o);
+  $('topic').value='';$('min').value='';$('chCustom').value='';$('qAtt').value='';$('qCor').value='';$('remChk').checked=true;$('err').hidden=true;
+  if(F.sub==='Other'||(F.ch&&!(CH[F.sub]||[]).includes(F.ch))){$('chCustom').value=F.ch;F.custom=true}else F.custom=false;
+  draw();$('bd').hidden=false;$('sheet').hidden=false;
+}
+function closeSheet(){$('bd').hidden=true;$('sheet').hidden=true;$('scSheet').hidden=true}
+function draw(){
+  $('shTitle').textContent='Log for '+parse(sel).toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short'});
+  document.querySelectorAll('.seg button').forEach(b=>b.classList.toggle('on',b.dataset.t===F.type));
+  $('subChips').innerHTML=SUBS.map(s=>`<button class="chip ${cls(s)}${s===F.sub?' on':''}" data-sub="${s}">${s}</button>`).join('');
+  const isO=F.sub==='Other';
+  $('chBox').hidden=isO;
+  if(!isO){$('chSel').innerHTML='<option value="">Choose chapter…</option>'+CH[F.sub].map(c=>`<option${c===F.ch&&!F.custom?' selected':''}>${esc(c)}</option>`).join('')+`<option value="__c"${F.custom?' selected':''}>Other chapter…</option>`}
+  $('chCBox').hidden=!(isO||F.custom);
+  $('remRow').hidden=F.type!=='s';$('qBox').hidden=F.type!=='q';
+  $('minChips').innerHTML=[15,30,45,60,90,120].map(m=>`<button class="chip${+$('min').value===m?' on':''}" data-m="${m}">${fmt(m)}</button>`).join('');
+}
+$('fab').onclick=()=>openSheet();
+$('bd').onclick=closeSheet;
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
+$('sheet').addEventListener('click',e=>{
+  const t=e.target.closest('[data-t]'),s=e.target.closest('[data-sub]'),m=e.target.closest('[data-m]');
+  if(t){F.type=t.dataset.t;draw()}
+  if(s){F.sub=s.dataset.sub;F.ch='';F.custom=false;draw()}
+  if(m){$('min').value=m.dataset.m;draw()}
+});
+$('min').addEventListener('input',draw);
+$('chSel').addEventListener('change',()=>{const v=$('chSel').value;F.custom=v==='__c';F.ch=F.custom?'':v;$('chCBox').hidden=!F.custom})
+$('save').onclick=()=>{
+  const isC=F.sub==='Other'||$('chSel').value==='__c';
+  const ch=isC?$('chCustom').value.trim():$('chSel').value;
+  if(!ch&&F.type!=='q'){$('err').textContent='Choose a chapter first.';$('err').hidden=false;return}
+  const att=+$('qAtt').value||0,cor=+$('qCor').value||0;
+  if(F.type==='q'&&(att<1||cor<0||cor>att)){$('err').textContent=att<1?'Enter how many questions you attempted.':'Correct answers can\'t be more than attempted.';$('err').hidden=false;return}
+  (data.entries[sel]=data.entries[sel]||[]).push({id:rid(),type:F.type,sub:F.sub,ch:ch||'General practice',topic:$('topic').value.trim(),min:Math.max(0,+$('min').value||0),...(F.type==='q'?{att,cor}:{})});
+  if(F.type==='s'&&$('remChk').checked)[1,3,7,21].forEach((n,i)=>data.rem.push({id:rid(),sub:F.sub,ch,due:addDays(sel,n),n:i+1,done:false}));
+  if(F.link){const r=data.rem.find(x=>x.id===F.link);if(r)r.done=true}
+  save();closeSheet();render();
+};
+$('dueCard').addEventListener('click',e=>{
+  if(e.target.closest('[data-duetog]')){data.dueOpen=data.dueOpen===false;save();renderDue();return}
+  const nr=e.target.closest('[data-nrev]');if(!nr)return;
+  const [kind,sub,ch]=nr.dataset.nrev.split('|'),k=sub+'|'+ch;
+  if(kind==='c')data.syl[k]={d:todayKey,r:0,l:todayKey};else if(data.syl[k]){data.syl[k].r++;data.syl[k].l=todayKey}
+  save();render();
+});
+$('sylCard').addEventListener('click',e=>{
+  if(e.target.closest('[data-syltog]')){data.sylOpen=!data.sylOpen;save();renderSyl();return}
+  const t=e.target.closest('[data-sylsubtog]');if(t){data.sylSub=data.sylSub===t.dataset.sylsubtog?null:t.dataset.sylsubtog;save();renderSyl();return}
+  const tg=e.target.closest('[data-tg]');
+  if(tg){const k=tg.dataset.tg;if(data.syl[k])delete data.syl[k];else data.syl[k]={d:todayKey,r:0,l:todayKey};save();render();return}
+  const rv=e.target.closest('[data-rv]');
+  if(rv){const o=data.syl[rv.dataset.rv];if(o){o.r++;o.l=todayKey;save();render()}}
+});
+$('scFields').addEventListener('input',updTot);
+$('scSave').onclick=()=>{
+  const o={};let n=0,bad=false;
+  document.querySelectorAll('[data-sc]').forEach(i=>{if(i.value!==''){const v=+i.value;if(isNaN(v)||v<-45||v>180)bad=true;else{o[i.dataset.sc]=v;n++}}});
+  if(bad||!n){$('scErr').textContent=bad?'Marks must be between -45 and 180 for each subject.':'Enter marks for at least one subject.';$('scErr').hidden=false;return}
+  o.note=$('scNote').value.trim();data.scores[SC.d]=o;save();closeSheet();render();
+};
+$('scDel').onclick=()=>{delete data.scores[SC.d];save();closeSheet();render()};
+const bkMsg=m=>{$('bkMsg').textContent=m};
+$('bkTog').onclick=()=>{const b=$('bkBody');b.hidden=!b.hidden;$('bkTog').setAttribute('aria-expanded',!b.hidden);$('bkArrow').textContent=b.hidden?'▾':'▴'};
+const bkText=()=>JSON.stringify(data);
+$('bkCopy').onclick=async()=>{const t=bkText();$('bkTxt').value=t;
+  try{await navigator.clipboard.writeText(t);bkMsg('Backup copied. Paste it somewhere safe, or into the restore box in the new app.')}
+  catch(e){$('bkTxt').focus();$('bkTxt').select();bkMsg('Select all the text in the box and copy it manually.')}};
+$('bkDl').onclick=()=>{try{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([bkText()],{type:'application/json'}));a.download='neet-tracker-backup-'+todayKey+'.json';document.body.appendChild(a);a.click();a.remove();bkMsg('Backup file saved to your downloads.')}catch(e){bkMsg('Download is not available here. Use Copy backup instead.')}};
+function restoreFrom(txt){
+  let o;try{o=JSON.parse(txt)}catch(e){bkMsg('That does not look like a backup.');return}
+  if(!o||typeof o.entries!=='object'||o.entries===null){bkMsg('That does not look like a backup.');return}
+  data=Object.assign({entries:{},rem:[],scores:{},syl:{}},o);data.pastMarked=true;save();render();bkMsg('Restored. Your logs, scores and syllabus are back.');
+}
+let rsArm=0;
+$('bkRestore').onclick=()=>{const t=$('bkTxt').value.trim();if(!t){bkMsg('Paste your backup text first.');return}
+  if(!rsArm){rsArm=1;$('bkRestore').textContent='Tap again to replace current data';setTimeout(()=>{rsArm=0;$('bkRestore').textContent='Restore from text'},4000);return}
+  rsArm=0;$('bkRestore').textContent='Restore from text';restoreFrom(t)};
+$('bkFile').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$('bkTxt').value=r.result;bkMsg('File loaded. Tap Restore from text to apply it.')};r.readAsText(f)};
+if(!data.pastMarked){const n=markPast();data.pastMarked=true;save();sylMsg=n?`Marked ${n} chapters from your past tests as completed.`:''}
+render();
+</script>
+<script>
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist()}catch(e){}
+</script>
+</body>
+</html>
